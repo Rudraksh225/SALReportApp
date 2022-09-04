@@ -36,6 +36,10 @@ const postSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    postImage:{
+        type: String,
+        required: true
+    },
     date:{
         type: Date,
         default: Date.now
