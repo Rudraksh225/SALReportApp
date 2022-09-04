@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
+const Image = require('../models/Image')
+const fetchuser = require("../middleware/fetchuser");
+const { body, validationResult } = require("express-validator");
+
 const multer = require('multer');
 
 // Set a storage 
@@ -30,15 +34,20 @@ const fileFilter = (req, file, cb) =>{
 }
 
 const upload = multer({
+
+   //Added a storage path
    storage: storage,
+
+   //Set a limit size
    limits:{
       fileSize: 1024 * 1024 * 20
    },
+   
+   // Added file filter
    fileFilter: fileFilter
 });
-const Image = require('../models/Image')
-const fetchuser = require("../middleware/fetchuser");
-const { body, validationResult } = require("express-validator");
+
+
 
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
@@ -51,6 +60,8 @@ router.post("/fetchallpost", fetchuser, async (req, res) => {
       res.status(500).send("Ineternal Server Error");
    }
 });
+
+
 
 // ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
@@ -66,7 +77,8 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
       } 
       
       const newpost = new Post({
-         phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id
+         phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
+         postImage: req.file.path
       });
 
 
