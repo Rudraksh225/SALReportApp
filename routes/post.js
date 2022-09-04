@@ -29,7 +29,13 @@ const fileFilter = (req, file, cb) =>{
    }
 }
 
-const upload = multer({storage: storage});
+const upload = multer({
+   storage: storage,
+   limits:{
+      fileSize: 1024 * 1024 * 20
+   },
+   fileFilter: fileFilter
+});
 const Image = require('../models/Image')
 const fetchuser = require("../middleware/fetchuser");
 const { body, validationResult } = require("express-validator");
