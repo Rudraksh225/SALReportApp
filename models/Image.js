@@ -12,6 +12,10 @@ const ImageSchema = mongoose.Schema({
     image:{
         data: Buffer,
         contentType: String
+    },
+    date:{
+        type: Date,
+        default: Date.now
     }
 })
 
