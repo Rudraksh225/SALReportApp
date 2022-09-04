@@ -58,7 +58,7 @@ router.post('/createuser',[
 
 })
 
-// ROUTE 2: Authenticate a User Using = using : POST "/api/auth/login". No Login Required
+// ROUTE 2: Authenticate a User using : POST "/api/auth/login". No Login Required
 
 router.post('/login',[
   body('email','Enter a valid email').isEmail(),
@@ -114,6 +114,10 @@ router.post('/getuser', fetchuser ,async (req,res) => {
 
 })
 
+//ROUTE 4: Authenticate a User using : POST "/api/auth/admin". No Login Required
 
+
+
+router.post('/adminlogin')
 
 module.exports = router 
