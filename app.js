@@ -14,6 +14,13 @@ const app = express()
 
 app.use(express.json())
 
+/*Make a upload folder available publically for fetching images
+  1. 1st part will be ignore '/upload' so you can access form browser with upload router also
+     (basically it ignores '/uploads' in link that recieve)
+  2. 2nd part will make upload folder static
+*/
+app.use('/uploads',express.static('uploads'))
+
 //Available routes
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/post', require('./routes/post'))
