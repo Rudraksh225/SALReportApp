@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
-const Image = require('../models/Image')
 const fetchuser = require("../middleware/fetchuser");
 const { body, validationResult } = require("express-validator");
 
@@ -12,7 +11,7 @@ const storage = multer.diskStorage({
 
    // Set a destination where you want to store image
    destination: function(req, file, cb){
-      cb(null, './uploads')
+      cb(null, './uploads/')
    },
 
    // Set a filename 
@@ -51,11 +50,11 @@ const upload = multer({
 
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
-router.post("/fetchallpost", fetchuser, async (req, res) => {
+router.get("/fetchallpost", fetchuser, async (req, res) => {
    try {
       const posts = await Post.find({ user: req.user.id });
       res.json(posts);
-   } catch (err) {
+   } catch (err) {  
       console.error(err.message);
       res.status(500).send("Ineternal Server Error");
    }
@@ -76,6 +75,7 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
          return res.status(400).json({ errors: errors.array() });
       } 
       
+      console.log(req.file)
       const newpost = new Post({
          phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
          postImage: req.file.path

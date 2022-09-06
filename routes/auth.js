@@ -18,7 +18,7 @@ router.post('/createuser',[
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
-    }
+    }  
     
     //check wether the user with this email exist already
     try{
@@ -60,7 +60,7 @@ router.post('/createuser',[
 
 // ROUTE 2: Authenticate a User using : POST "/api/auth/login". No Login Required
 
-router.post('/login',[
+router.post('/login',[ 
   body('email','Enter a valid email').isEmail(),
   body('password','Password Cannot be blank').exists()
 ],async (req,res) => {
@@ -91,7 +91,7 @@ router.post('/login',[
       }
       const authtoken = jwt.sign(data, JWT_SECRET)
 
-      res.json({authtoken})
+      res.json({authtoken}) 
 
     }catch(err){
       console.error(err.message)
