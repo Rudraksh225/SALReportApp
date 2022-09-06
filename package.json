@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "an app for report a problem to AMC.",
   "main": "app.js",
+  "engines": {
+    "node": "16.14.2"
+  },
   "scripts": {
     "start": "nodemon app.js"
   },
