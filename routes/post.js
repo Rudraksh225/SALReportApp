@@ -103,11 +103,12 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
 
       // If there are errors, return bad request and the errors
       const errors = validationResult(req);
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",errors);
 
       if (!errors.isEmpty()) {
          return res.status(400).json({ errors: errors.array() });
       } 
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       
       console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
       const newpost = new Post({
