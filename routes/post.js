@@ -94,6 +94,7 @@ router.get("/fetchallpost", fetchuser, async (req, res) => {
 router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
    
    try{
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
 
       // If there are errors, return bad request and the errors
@@ -102,10 +103,10 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
          return res.status(400).json({ errors: errors.array() });
       } 
       
-      // console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
+      console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
       const newpost = new Post({
          phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
-         postImage: "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?202208222229"
+         postImage: req.file.path
       });
 
 
@@ -114,8 +115,34 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
       res.json(savedPost);   
    }catch(err){
       console.error(err.message);
-      res.status(500).send("Ineternal Server Error" + err.message);
+      res.status(500).send("Ineternal Server Error"+err.message);
    }
 });
+// router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
+   
+//    try{
+//       const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+
+//       // If there are errors, return bad request and the errors
+//       const errors = validationResult(req);
+//       if (!errors.isEmpty()) {
+//          return res.status(400).json({ errors: errors.array() });
+//       } 
+      
+//       console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
+//       const newpost = new Post({
+//          phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
+//          postImage: req.file.path
+//       });
+
+
+//       const savedPost = await newpost.save();
+
+//       res.json(savedPost);   
+//    }catch(err){
+//       console.error(err.message);
+//       res.status(500).send("Ineternal Server Error");
+//    }
+// });
 
 module.exports = router;
