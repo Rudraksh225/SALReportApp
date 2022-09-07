@@ -66,9 +66,9 @@ router.get("/fetchallpost", fetchuser, async (req, res) => {
 
 router.post("/addpost", fetchuser, async (req, res) => {
    
-   // try{
+   try{
       const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
-      //
+      //git 
 
       // If there are errors, return bad request and the errors
       // const errors = validationResult(req);
@@ -86,10 +86,10 @@ router.post("/addpost", fetchuser, async (req, res) => {
       const savedPost = await newpost.save();
 
       res.json(savedPost);   
-   // }catch(err){
-   //    console.error(err.message);
-   //    res.status(500).send("Ineternal 22 Server Error "+  err.message);
-   // }
+   }catch(err){
+      console.error(err.message);
+      res.status(500).send("Ineternal 22 Server Error "+  err.message);
+   }
 });
 // router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
    
