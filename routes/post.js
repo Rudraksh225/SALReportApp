@@ -87,7 +87,7 @@ router.post("/addpost", fetchuser, async (req, res) => {
       res.json(savedPost);   
    }catch(err){
       console.error(err.message);
-      res.status(500).send("Ineternal Server Error "+  err.message);
+      res.status(500).send("Ineternal 22 Server Error "+  err.message);
    }
 });
 // router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
