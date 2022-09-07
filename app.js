@@ -12,7 +12,7 @@ const app = express()
 //     console.log('connected...')
 // })
 
-app.use(express.json())
+app.use(express.json({limit: '1000mb'}))
 
 /*Make a upload folder available publically for fetching images
   1. 1st part will be ignore '/upload' so you can access form browser with upload router also

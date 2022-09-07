@@ -4,6 +4,7 @@ const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
+const Admin = require('../models/Admin')
 var jwt = require('jsonwebtoken');
 
 const JWT_SECRET = "SALReportApp0359"
@@ -116,7 +117,50 @@ router.post('/getuser', fetchuser ,async (req,res) => {
 
 //ROUTE 4: Authenticate a User using : POST "/api/auth/admin". No Login Required
 
+router.post('/createadmin',[
+  body('email','Enter a valid email').isEmail(),
+  body('password','password must be atleast 5 character').isLength({ min: 5 })
+],async (req,res) => {
 
+  // If there are errors, return bad request and the errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }  
+  
+  //check wether the user with this email exist already
+  try{
+    //find for user with this email id already exist or not
+    let user = await admin.findOne({email:req.body.email});
+    if(user){
+      return res.status(400).json({error:"Sorry, this email address alredy exist"})
+    }
+
+    //change password into hash using bcryptjs
+    const salt = await bcrypt.genSalt(10);
+    const secPass = await bcrypt.hash(req.body.password, salt)
+
+    //create a new user
+    user = await Admin.create({
+      name: req.body.name,
+      password: secPass,
+    })
+    
+    const data={
+      admin:{
+        id: admin.id
+      }
+    }
+    const authtoken = jwt.sign(data, JWT_SECRET)
+    
+    res.json({authtoken})
+
+  } catch(err){
+    console.error(err.message)
+    res.status(500).send("Ineternal Server Error")
+  }
+
+})
 
 router.post('/adminlogin')
 
