@@ -162,7 +162,7 @@ router.post('/createadmin',[
 
 })
 
-//Route 5: Authenticate a admin using "/api/auth/adminlogin"
+//Route 5: Authenticate a admin using "/api/auth/adminlogin" no login required
 
 router.post('/adminlogin',[ 
   body('email','Enter a valid email').isEmail(),
