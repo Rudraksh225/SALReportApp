@@ -115,7 +115,7 @@ router.post('/getuser', fetchuser ,async (req,res) => {
 
 })
 
-//ROUTE 4: Authenticate a User using : POST "/api/auth/admin". No Login Required
+//ROUTE 4: Create a admin "/api/auth/createadmin"
 
 router.post('/createadmin',[
   body('email','Enter a valid email').isEmail(),
@@ -131,8 +131,8 @@ router.post('/createadmin',[
   //check wether the user with this email exist already
   try{
     //find for user with this email id already exist or not
-    let user = await admin.findOne({email:req.body.email});
-    if(user){
+    let admin = await Admin.findOne({email:req.body.email});
+    if(admin){
       return res.status(400).json({error:"Sorry, this email address alredy exist"})
     }
 
@@ -141,8 +141,8 @@ router.post('/createadmin',[
     const secPass = await bcrypt.hash(req.body.password, salt)
 
     //create a new user
-    user = await Admin.create({
-      name: req.body.name,
+    admin = await Admin.create({
+      email: req.body.email,
       password: secPass,
     })
     
@@ -162,6 +162,45 @@ router.post('/createadmin',[
 
 })
 
-router.post('/adminlogin')
+//Route 5: Authenticate a admin using "/api/auth/adminlogin"
+
+router.post('/adminlogin',[ 
+  body('email','Enter a valid email').isEmail(),
+  body('password','Password Cannot be blank').exists()
+],async (req,res) => {
+
+  // If there are errors, return bad request and the errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const {email, password} = req.body;
+
+    try{
+      let admin = await Admin.findOne({email:req.body.email});
+      if(!admin){
+        return res.status(400).json({error:"Please try to login with correct credentials"})
+      }
+
+      const passwordcompare = await bcrypt.compare(password, admin.password)
+      if(!passwordcompare){
+        return res.status(400).json({error:"Please try to login with correct credentials"})
+      }
+
+      const data ={
+        admin:{
+          id: admin.id
+        }
+      }
+      const authtoken = jwt.sign(data, JWT_SECRET)
+
+      res.json({authtoken}) 
+
+    }catch(err){
+      console.error(err.message)
+      res.status(500).send("Internal Server Error")
+    }
+})
 
 module.exports = router 

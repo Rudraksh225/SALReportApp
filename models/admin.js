@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 
-const postSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
 
-    name:{
+    email:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password:{
         type: String,
@@ -15,3 +16,5 @@ const postSchema = new mongoose.Schema({
         defalut: Date.now
     }
 })
+
+module.exports = mongoose.model('admin',adminSchema)
