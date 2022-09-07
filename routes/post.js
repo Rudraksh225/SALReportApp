@@ -96,6 +96,9 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
    try{
       console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+      console.log(area, description, locality, longtitude, latitude, phoneno, name);
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
 
       // If there are errors, return bad request and the errors
       const errors = validationResult(req);
