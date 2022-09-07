@@ -64,7 +64,7 @@ router.get("/fetchallpost", fetchuser, async (req, res) => {
 
 // ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
-router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
+router.post("/addpost", fetchuser, async (req, res) => {
    
    try{
       const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
@@ -75,10 +75,10 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
          return res.status(400).json({ errors: errors.array() });
       } 
       
-      console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
+      // console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
       const newpost = new Post({
          phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
-         postImage: req.file.path
+         // postImage: req.file.path
       });
 
 
@@ -90,5 +90,31 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
       res.status(500).send("Ineternal Server Error");
    }
 });
+// router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
+   
+//    try{
+//       const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+
+//       // If there are errors, return bad request and the errors
+//       const errors = validationResult(req);
+//       if (!errors.isEmpty()) {
+//          return res.status(400).json({ errors: errors.array() });
+//       } 
+      
+//       console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
+//       const newpost = new Post({
+//          phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
+//          postImage: req.file.path
+//       });
+
+
+//       const savedPost = await newpost.save();
+
+//       res.json(savedPost);   
+//    }catch(err){
+//       console.error(err.message);
+//       res.status(500).send("Ineternal Server Error");
+//    }
+// });
 
 module.exports = router;
