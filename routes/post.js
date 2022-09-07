@@ -62,7 +62,7 @@ router.get("/fetchpost", fetchuser, async (req, res) => {
 
 router.get("/fetchallpost", async (req, res) => {
    try {
-      const posts = await Post.find({ user: req.user.id });
+
       res.json(posts);
    } catch (err) {  
       console.error(err.message);
@@ -76,7 +76,7 @@ router.get("/fetchallpost", async (req, res) => {
 router.post("/addpost", fetchuser, async (req, res) => {
    
    try{
-      const { img, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+      const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       //git 
 
       // If there are errors, return bad request and the errors
@@ -85,10 +85,10 @@ router.post("/addpost", fetchuser, async (req, res) => {
          return res.status(400).json({ errors: errors.array() });
       } 
       
-      
+   
       const newpost = new Post({
          phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
-         img: req.image.id
+         image: req.body.image
       });
 
 
