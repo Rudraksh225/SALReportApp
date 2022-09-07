@@ -62,7 +62,7 @@ router.get("/fetchpost", fetchuser, async (req, res) => {
 
 router.get("/fetchallpost", async (req, res) => {
    try {
-
+      const posts = await Post
       res.json(posts);
    } catch (err) {  
       console.error(err.message);
