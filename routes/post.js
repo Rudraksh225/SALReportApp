@@ -70,10 +70,10 @@ router.post("/addpost", fetchuser, async (req, res) => {
       const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
 
       // If there are errors, return bad request and the errors
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-         return res.status(400).json({ errors: errors.array() });
-      } 
+      // const errors = validationResult(req);
+      // if (!errors.isEmpty()) {
+      //    return res.status(400).json({ errors: errors.array() });
+      // } 
       
       // console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
       const newpost = new Post({
@@ -87,7 +87,7 @@ router.post("/addpost", fetchuser, async (req, res) => {
       res.json(savedPost);   
    }catch(err){
       console.error(err.message);
-      res.status(500).send("Ineternal Server Error");
+      res.status(500).send("Ineternal Server Error", err.message);
    }
 });
 // router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
