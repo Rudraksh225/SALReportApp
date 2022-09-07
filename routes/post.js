@@ -60,6 +60,8 @@ router.get("/fetchpost", fetchuser, async (req, res) => {
    }
 });
 
+//Fetch all the post
+
 router.get("/fetchallpost", async (req, res) => {
    try {
       const posts = await Post
