@@ -95,27 +95,29 @@ router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
    
    try{
       console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-      const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
-      console.log(req.body);
-      console.log(area, description, locality, longtitude, latitude, phoneno, name);
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      // const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+      // console.log(req.body);
+      // console.log(area, description, locality, longtitude, latitude, phoneno, name);
+      // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 
-      // If there are errors, return bad request and the errors
-      const errors = validationResult(req);
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",errors);
+      // // If there are errors, return bad request and the errors
+      // const errors = validationResult(req);
+      // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",errors);
 
-      if (!errors.isEmpty()) {
-         return res.status(400).json({ errors: errors.array() });
-      } 
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      // if (!errors.isEmpty()) {
+      //    return res.status(400).json({ errors: errors.array() });
+      // } 
+      // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       console.log(req);
 
       console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 
 
       
-      console.log(1111111111111111111111111111111, req.file.path, 111111111111111111111111111111111111)
+      console.log(1111111111111111111111111111111111111111111111111111111111111111111)
+      console.log( req.file.path)
+      console.log(1111111111111111111111111111111111111111111111111111111111111111111)
 
       console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 
