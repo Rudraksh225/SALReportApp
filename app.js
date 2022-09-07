@@ -64,7 +64,7 @@ app.use('/api/post', require('./routes/post'));
 // const userRouter = require('./routes/users')    
 // app.use('/users', userRouter)
 
-app.listen(27017,function(){
+app.listen(process.env.PORT || 27017,function(){
     console.log('Server started')
 })
  
