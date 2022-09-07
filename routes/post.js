@@ -68,6 +68,7 @@ router.post("/addpost", fetchuser, async (req, res) => {
    
    // try{
       const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+      //
 
       // If there are errors, return bad request and the errors
       // const errors = validationResult(req);
