@@ -80,10 +80,10 @@ router.post('/login',[
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const {email, password} = req.body;
+  const {email, password} = req.params;
 
     try{
-      let user = await User.findOne({email:req.body.email});
+      let user = await User.findOne({email:req.params.email});
       if(!user){
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
