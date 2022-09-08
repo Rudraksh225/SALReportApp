@@ -7,10 +7,8 @@ const fetchuser = require('../middleware/fetchuser');
 
 try{
 const Admin = require('../models/Admin')
-}catch(err){
-console.log(66666666666666666666666666666666666666666)
+}catch(err){  
 console.log(err)
-console.log(66666666666666666666666666666666666666666)
 }
 
 var jwt = require('jsonwebtoken');
@@ -49,16 +47,16 @@ router.post('/createuser',[
         password: secPass,
         state: req.body.state,
         city: req.body.city,    
-      }).then(res.json({message: "Succesfully created"})) 
+      }) 
+      // .then(res.json({message: "Succesfully created"}))
+      const data={
+        user:{
+          id: user.id
+        }
+      }
+      const authtoken = jwt.sign(data, JWT_SECRET)
       
-      // const data={
-      //   user:{
-      //     id: user.id
-      //   }
-      // }
-      // const authtoken = jwt.sign(data, JWT_SECRET)
-      
-      // res.json({authtoken})
+      res.json({authtoken})
 
     } catch(err){
       console.error(err.message)
@@ -94,14 +92,14 @@ router.post('/login',[
       }
       
       res.json({message:"Succesfully login"})
-      // const data ={
-      //   user:{
-      //     id: user.id
-      //   }
-      // }
-      // const authtoken = jwt.sign(data, JWT_SECRET)
+      const data ={
+        user:{
+          id: user.id
+        }
+      }
+      const authtoken = jwt.sign(data, JWT_SECRET)
 
-      // res.json({authtoken}) 
+      res.json({authtoken}) 
 
     }catch(err){
       console.error(err.message)
@@ -111,7 +109,7 @@ router.post('/login',[
 
 // ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login Required
 
-router.post('/getuser',async (req,res) => {
+router.post('/getuser',fetchuser,async (req,res) => {
 
   try {
     userId = req.user.id;

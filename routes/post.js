@@ -50,7 +50,7 @@ const { body, validationResult } = require("express-validator");
 
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
-router.get("/fetchpost",async (req, res) => {
+router.get("/fetchpost",fetchuser, async (req, res) => {
 
 
    try {
@@ -64,7 +64,7 @@ router.get("/fetchpost",async (req, res) => {
 
 //Fetch all the post
 
-router.get("/fetchallpost", async (req, res) => {
+router.get("/fetchallpost",async (req, res) => {
    try {
       // const posts = await Post
       res.json(Post);
@@ -77,7 +77,7 @@ router.get("/fetchallpost", async (req, res) => {
 
 //ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
-router.post("/addpost",async (req, res) => {
+router.post("/addpost",fetchuser,async (req, res) => {
    
    try{
       
