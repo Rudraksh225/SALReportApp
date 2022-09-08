@@ -91,7 +91,6 @@ router.post('/login',[
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
       
-      res.json({message:"Succesfully login"})
       const data ={
         user:{
           id: user.id
