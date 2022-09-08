@@ -49,7 +49,7 @@ router.post('/createuser',[
         password: secPass,
         state: req.body.state,
         city: req.body.city,    
-      }).then(res.json({message: "Succesfully created"}))
+      }).then(res.json({message: "Succesfully created"})) 
       
       // const data={
       //   user:{
@@ -92,15 +92,16 @@ router.post('/login',[
       if(!passwordcompare){
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
+      
+      res.json({message:"Succesfully login"})
+      // const data ={
+      //   user:{
+      //     id: user.id
+      //   }
+      // }
+      // const authtoken = jwt.sign(data, JWT_SECRET)
 
-      const data ={
-        user:{
-          id: user.id
-        }
-      }
-      const authtoken = jwt.sign(data, JWT_SECRET)
-
-      res.json({authtoken}) 
+      // res.json({authtoken}) 
 
     }catch(err){
       console.error(err.message)
