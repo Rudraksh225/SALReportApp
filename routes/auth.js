@@ -4,7 +4,15 @@ const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
+
+try{
 const Admin = require('../models/Admin')
+}catch(err){
+console.log(66666666666666666666666666666666666666666)
+console.log(err)
+console.log(66666666666666666666666666666666666666666)
+}
+
 var jwt = require('jsonwebtoken');
 
 const JWT_SECRET = "SALReportApp0359"

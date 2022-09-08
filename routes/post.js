@@ -64,8 +64,8 @@ router.get("/fetchpost", fetchuser, async (req, res) => {
 
 router.get("/fetchallpost", async (req, res) => {
    try {
-      const posts = await Post
-      res.json(posts);
+      // const posts = await Post
+      res.json(Post);
    } catch (err) {  
       console.error(err.message);
       res.status(500).send("Ineternal Server Error");
