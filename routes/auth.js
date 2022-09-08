@@ -49,16 +49,16 @@ router.post('/createuser',[
         password: secPass,
         state: req.body.state,
         city: req.body.city,    
-      })
+      }).then(res.json({message: "Succesfully created"}))
       
-      const data={
-        user:{
-          id: user.id
-        }
-      }
-      const authtoken = jwt.sign(data, JWT_SECRET)
+      // const data={
+      //   user:{
+      //     id: user.id
+      //   }
+      // }
+      // const authtoken = jwt.sign(data, JWT_SECRET)
       
-      res.json({authtoken})
+      // res.json({authtoken})
 
     } catch(err){
       console.error(err.message)
