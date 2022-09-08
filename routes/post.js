@@ -79,7 +79,8 @@ router.post("/addpost", fetchuser, async (req, res) => {
    
    try{
       console.log(111111111111111111111111111111111111111111111111111)
-      const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+      // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+      const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       //git 
       console.log(image, area, description, locality, longtitude, latitude, phoneno, name )
       console.log(111111111111111111111111111111111111111111111111111)
@@ -95,7 +96,7 @@ router.post("/addpost", fetchuser, async (req, res) => {
    
       const newpost = new Post({
          phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
-         image: req.body.image
+         // image: req.body.image
       });
 
       console.log(111111111111111111111111111111111111111111111111111)
