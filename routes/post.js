@@ -50,7 +50,9 @@ const { body, validationResult } = require("express-validator");
 
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
-router.get("/fetchpost", fetchuser, async (req, res) => {
+router.get("/fetchpost",async (req, res) => {
+
+
    try {
       const posts = await Post.find({ user: req.user.id });
       res.json(posts);
@@ -75,15 +77,14 @@ router.get("/fetchallpost", async (req, res) => {
 
 //ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
-router.post("/addpost", fetchuser, async (req, res) => {
+router.post("/addpost",async (req, res) => {
    
    try{
-      console.log(111111111111111111111111111111111111111111111111111)
+      
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       //git 
       console.log(image, area, description, locality, longtitude, latitude, phoneno, name )
-      console.log(111111111111111111111111111111111111111111111111111)
 
 
       // If there are errors, return bad request and the errors
@@ -91,15 +92,13 @@ router.post("/addpost", fetchuser, async (req, res) => {
       if (!errors.isEmpty()) {
          return res.status(400).json({ errors: errors.array() });
       } 
-      console.log(111111111111111111111111111111111111111111111111111)
+      
       
    
       const newpost = new Post({
          phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
          image: req.body.image
       });
-
-      console.log(111111111111111111111111111111111111111111111111111)
 
 
       const savedPost = await newpost.save();
