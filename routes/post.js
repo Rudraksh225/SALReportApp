@@ -51,11 +51,31 @@ const { body, validationResult } = require("express-validator");
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
 router.get("/fetchpost/:id", async (req, res) => {
+   
 
-
+   
    try {
       const posts = await Post.find({ user : req.params.id });
-      res.json(posts);
+      //res.json(posts)
+
+      // Taken refrence from https://stackoverflow.com/questions/36856232/write-add-data-in-json-file-using-node-js
+      // Make a json object
+      var obj = {
+         table: []
+      };
+
+      //Add some data in json object
+      obj.table.push(posts);
+
+      //Convert it from an object to a string with JSON.stringify
+      var json = JSON.stringify(obj);
+
+      //Use fs to write the file to disk
+      var fs = require('fs');
+      fs.writeFile('posts.json', json, 'utf8', callback);
+
+      res.json(posts.json)
+
    } catch (err) {  
       console.log(err);
       res.status(500).send("Ineternal Server Error");
@@ -81,7 +101,7 @@ async (req, res) => {
 
 //ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
-router.post("/addpost",fetchuser,async (req, res) => {
+router.post("/addpost", async (req, res) => {
    
    try{
       
@@ -100,7 +120,7 @@ router.post("/addpost",fetchuser,async (req, res) => {
       
    
       const newpost = new Post({
-         phoneno, name, latitude, longtitude, area, description, locality, user: req.user.id,
+         phoneno, name, latitude, longtitude, area, description, locality, user: req.body.id,
          image: req.body.image
       });
 
