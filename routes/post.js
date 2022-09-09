@@ -50,7 +50,7 @@ const { body, validationResult } = require("express-validator");
 
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
-router.get("/fetchpost",fetchuser, async (req, res) => {
+router.get("/fetchpost", async (req, res) => {
 
 
    try {
@@ -60,6 +60,7 @@ router.get("/fetchpost",fetchuser, async (req, res) => {
       console.error(err.message);
       res.status(500).send("Ineternal Server Error");
    }
+   
 });
 
 //Fetch all the post
