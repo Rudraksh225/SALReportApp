@@ -54,13 +54,13 @@ router.get("/fetchpost", async (req, res) => {
 
 
    try {
-      const posts = await Post.find({ user: req.user.id });
+      const posts = await Post.find({ user: req.body.id });
       res.json(posts);
    } catch (err) {  
-      console.error(err.message);
+      console.log(err);
       res.status(500).send("Ineternal Server Error");
    }
-   
+
 });
 
 //Fetch all the post
