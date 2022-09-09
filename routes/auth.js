@@ -119,7 +119,7 @@ router.get('/getuser/:id',async (req,res) => {
     if(!user){
       return res.status(400).json({error:"there is not any user wtih this id"})
     }
-    res.send(user)
+    res.json(user)
   } catch (err) {
       console.error(err.message)
       res.status(500).send("Internal Server Error")
