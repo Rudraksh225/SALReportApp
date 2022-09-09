@@ -61,43 +61,30 @@ router.get("/fetchpost/:id", async (req, res) => {
       const posts = await Post.find({ user: req.params.id });
       //res.json(posts)
 
+      try{
       // Taken refrence from https://stackoverflow.com/questions/36856232/write-add-data-in-json-file-using-node-js
       // Make a json object
-      // var obj = {
-      //    table: []
-      // };
+      var obj = {
+         table: []
+      };
 
-      // //Add some data in json object
-      // obj.table.push(posts);
+      //Add some data in json object
+      obj.table.push(posts);
 
-      // //Convert it from an object to a string with JSON.stringify
-      // var json = JSON.stringify(obj);
+      //Convert it from an object to a string with JSON.stringify
+      var json = JSON.stringify(obj);
 
-      // //Use fs to write the file to disk
-      // var fs = require('fs');
-      // fs.writeFile('posts.json', json, 'utf8', callback);
-
-      // //console.log(posts.json)
-      // res.send(posts.json)
-
-      // STEP 1: Reading JSON file
-      const postFile = require("./postfile");
-
-      // STEP 2: Adding new data to users object
-      postFile.push(posts);
-
-      // STEP 3: Writing to a file
-      fs.writeFile("postfile.json", JSON.stringify(postfile), err => {
-
-         // Checking for errors
-         if (err) throw err;
-
-         console.log("Done writing"); // Success
-      });
+      //Use fs to write the file to disk
       
-      const postFiles = require("./postfile");
-      res.send(postFiles)
+      fs.writeFile('posts.json', json, 'utf8', callback);
 
+      //console.log(posts.json)
+      res.send(posts)
+      }
+      catch(err){
+         console.log(err)
+         res.send(err)
+      }
    } catch (err) {
       console.log(err);
       res.status(500).send("Ineternal Server Error");
