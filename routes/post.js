@@ -74,7 +74,8 @@ router.get("/fetchpost/:id", async (req, res) => {
       var fs = require('fs');
       fs.writeFile('posts.json', json, 'utf8', callback);
 
-      res.json(posts.json)
+      console.log(posts.json)
+      //res.json(posts.json)
 
    } catch (err) {  
       console.log(err);
