@@ -41,7 +41,7 @@ const { body, validationResult } = require("express-validator");
 //    limits:{
 //       fileSize: 1024 * 1024 * 20
 //    },
-   
+
 //    // Added file filter
 //    fileFilter: fileFilter
 // });
@@ -51,33 +51,39 @@ const { body, validationResult } = require("express-validator");
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
 router.get("/fetchpost/:id", async (req, res) => {
-   
 
-   
+
+
    try {
-      const posts = await Post.find({ user : req.params.id });
+      const posts = await Post.find({ user: req.params.id });
       //res.json(posts)
 
       // Taken refrence from https://stackoverflow.com/questions/36856232/write-add-data-in-json-file-using-node-js
       // Make a json object
-      var obj = {
-         table: []
-      };
+      // var obj = {
+      //    table: []
+      // };
 
-      //Add some data in json object
-      obj.table.push(posts);
+      // //Add some data in json object
+      // obj.table.push(posts);
 
-      //Convert it from an object to a string with JSON.stringify
-      var json = JSON.stringify(obj);
+      // //Convert it from an object to a string with JSON.stringify
+      // var json = JSON.stringify(obj);
 
-      //Use fs to write the file to disk
-      var fs = require('fs');
-      fs.writeFile('posts.json', json, 'utf8', callback);
+      // //Use fs to write the file to disk
+      // var fs = require('fs');
+      // fs.writeFile('posts.json', json, 'utf8', callback);
 
-      //console.log(posts.json)
-      res.send(posts.json)
+      // //console.log(posts.json)
+      // res.send(posts.json)
 
-   } catch (err) {  
+      const fs = require('fs');
+
+      let rawdata = fs.readFileSync('student.json');
+      let student = JSON.parse(rawdata);
+      console.log(student);
+
+   } catch (err) {
       console.log(err);
       res.status(500).send("Ineternal Server Error");
    }
@@ -89,37 +95,37 @@ router.get("/fetchpost/:id", async (req, res) => {
 //Fetch all the post
 
 router.get("/fetchallpost",
-async (req, res) => {
-   try {
-      // const posts = await Post
-      res.json(Post);
-   } catch (err) {  
-      console.error(err.message);
-      res.status(500).send("Ineternal Server Error");
-   }
-});
+   async (req, res) => {
+      try {
+         // const posts = await Post
+         res.json(Post);
+      } catch (err) {
+         console.error(err.message);
+         res.status(500).send("Ineternal Server Error");
+      }
+   });
 
 
 //ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
 router.post("/addpost", async (req, res) => {
-   
-   try{
-      
+
+   try {
+
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       //git 
-      console.log(image, area, description, locality, longtitude, latitude, phoneno, name )
+      console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
 
 
       // If there are errors, return bad request and the errors
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
          return res.status(400).json({ errors: errors.array() });
-      } 
-      
-      
-   
+      }
+
+
+
       const newpost = new Post({
          phoneno, name, latitude, longtitude, area, description, locality, user: req.body.id,
          image: req.body.image
@@ -128,14 +134,14 @@ router.post("/addpost", async (req, res) => {
 
       const savedPost = await newpost.save();
 
-      res.json(savedPost);   
-   }catch(err){
+      res.json(savedPost);
+   } catch (err) {
       console.error(err.message);
       res.status(500).send("Internal Server Error ");
    }
 });
 // router.post("/addpost", fetchuser, upload.single('image'), async (req, res) => {
-   
+
 //    try{
 //       console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 //       // const { area, description, locality, longtitude, latitude, phoneno, name } = req.body;
