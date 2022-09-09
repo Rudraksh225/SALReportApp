@@ -74,8 +74,11 @@ router.get("/fetchpost/:id", async (req, res) => {
       //Convert it from an object to a string with JSON.stringify
       var json = JSON.stringify(obj);
 
+      var callback = function (response) {
+         console.log('response statusCode', response.statusCode);
+       };
+
       //Use fs to write the file to disk
-      
       fs.writeFile('posts.json', json, 'utf8', callback);
 
       //console.log(posts.json)
