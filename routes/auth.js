@@ -47,7 +47,10 @@ router.post('/createuser',[
         password: secPass,
         state: req.body.state,
         city: req.body.city,    
-      }) .then(res.json(user))
+      }) 
+
+      const savedUser = await user.save()
+      res.json(savedUser)
       // const data={
       //   user:{
       //     id: user.id
