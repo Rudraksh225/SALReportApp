@@ -54,7 +54,7 @@ router.get("/fetchpost", async (req, res) => {
 
 
    try {
-      const posts = await Post.find({ _id: req.body.id });
+      const posts = await Post.find({ user : req.body.user });
       res.json(posts);
    } catch (err) {  
       console.log(err);
