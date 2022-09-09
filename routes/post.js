@@ -76,7 +76,7 @@ router.get("/fetchpost/:id", async (req, res) => {
 
       //Use fs to write the file to disk
       
-      fs.writeFile('posts.json', json, 'utf8');
+      fs.writeFile('posts.json', json, 'utf8', callback);
 
       //console.log(posts.json)
       res.send(posts)
