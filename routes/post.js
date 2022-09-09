@@ -55,6 +55,9 @@ router.get("/fetchpost/:id", async (req, res) => {
 
 
    try {
+
+      const fs = require("fs");
+
       const posts = await Post.find({ user: req.params.id });
       //res.json(posts)
 
@@ -77,11 +80,23 @@ router.get("/fetchpost/:id", async (req, res) => {
       // //console.log(posts.json)
       // res.send(posts.json)
 
-      const fs = require('fs');
+      // STEP 1: Reading JSON file
+      const postFile = require("./postfile");
 
-      let rawdata = fs.readFileSync('student.json');
-      let student = JSON.parse(rawdata);
-      console.log(student);
+      // STEP 2: Adding new data to users object
+      postFile.push(posts);
+
+      // STEP 3: Writing to a file
+      fs.writeFile("postfile.json", JSON.stringify(postfile), err => {
+
+         // Checking for errors
+         if (err) throw err;
+
+         console.log("Done writing"); // Success
+      });
+      
+      const postFiles = require("./postfile");
+      res.send(postFiles)
 
    } catch (err) {
       console.log(err);
