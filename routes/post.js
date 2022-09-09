@@ -63,6 +63,8 @@ router.get("/fetchpost/:id", async (req, res) => {
 
 });
 
+
+
 //Fetch all the post
 
 router.get("/fetchallpost",

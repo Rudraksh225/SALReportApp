@@ -47,16 +47,15 @@ router.post('/createuser',[
         password: secPass,
         state: req.body.state,
         city: req.body.city,    
-      }) 
-      // .then(res.json({message: "Succesfully created"}))
-      const data={
-        user:{
-          id: user.id
-        }
-      }
-      const authtoken = jwt.sign(data, JWT_SECRET)
+      }) .then(res.json(user))
+      // const data={
+      //   user:{
+      //     id: user.id
+      //   }
+      // }
+      // const authtoken = jwt.sign(data, JWT_SECRET)
       
-      res.json({authtoken})
+      // res.json({authtoken})
 
     } catch(err){
       console.error(err.message)
@@ -91,15 +90,15 @@ router.post('/login',[
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
       
-      
-      const data ={
-        user:{
-          id: user.id
-        }
-      }
-      const authtoken = jwt.sign(data, JWT_SECRET)
+      res.json({message: "Login Succesfully"})
+      // const data ={
+      //   user:{
+      //     id: user.id
+      //   }
+      // }
+      // const authtoken = jwt.sign(data, JWT_SECRET)
 
-      res.json({authtoken}) 
+      // res.json({authtoken}) 
 
     }catch(err){
       console.error(err.message)
