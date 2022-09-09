@@ -85,21 +85,16 @@ router.post('/login',[
     try{
 
       let user = await User.findOne({email:req.body.email});
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
       if(!user){
-        console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
-      console.log("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc")
+
       const passwordcompare = await bcrypt.compare(password, user.password)
-      console.log("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd")
       if(!passwordcompare){
-        console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
       
       const id = user._id
-      console.log("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
       res.json({id,message: "Login Succesfully"})
       // const data ={
       //   user:{
