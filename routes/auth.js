@@ -83,16 +83,18 @@ router.post('/login',[
   const {email, password} = req.body;
 
     try{
+      
       let user = await User.findOne({email:req.body.email});
       if(!user){
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
-      const id = user._id
+     
       const passwordcompare = await bcrypt.compare(password, user.password)
       if(!passwordcompare){
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
       
+      const id = user._id
       res.json({id,message: "Login Succesfully"})
       // const data ={
       //   user:{
