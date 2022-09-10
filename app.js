@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const connectToMongo = require('./db')
 // const caches = require('apicache')
-const cache = caches.middleware
+// const cache = caches.middleware
 // const url = 'mongodb://localhost/ReportApp' 
 connectToMongo()
 const app = express()
