@@ -122,12 +122,12 @@ router.get("/fetchallpost",
 
 //ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
-router.post("/addpost/:id", async (req, res) => {
+router.post("/addpost", async (req, res) => {
 
    try {
 
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
-      const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+      const { image, user, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       //git 
       console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
 
@@ -141,8 +141,7 @@ router.post("/addpost/:id", async (req, res) => {
 
 
       const newpost = new Post({
-         phoneno, name, latitude, longtitude, area, description, locality, user: req.params.id,
-         image: req.body.image
+         phoneno, name, latitude, longtitude, area, description, locality, user, image
       });
 
 
