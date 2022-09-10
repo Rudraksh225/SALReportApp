@@ -122,7 +122,7 @@ router.get("/fetchallpost",
 
 //ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
-router.post("/addpost", async (req, res) => {
+router.post("/addpost/:id", async (req, res) => {
 
    try {
 
@@ -141,7 +141,7 @@ router.post("/addpost", async (req, res) => {
 
 
       const newpost = new Post({
-         phoneno, name, latitude, longtitude, area, description, locality, user: req.body.id,
+         phoneno, name, latitude, longtitude, area, description, locality, user: req.params.id,
          image: req.body.image
       });
 
