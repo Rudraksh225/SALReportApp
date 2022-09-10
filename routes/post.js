@@ -147,6 +147,7 @@ router.post("/addpost", async (req, res) => {
 
       const savedPost = await newpost.save();
 
+      console.log(savedPost)
       res.json(savedPost);
    } catch (err) {
       console.error(err.message);
