@@ -75,7 +75,7 @@ router.post('/createuser',[
 router.post('/login',[ 
   body('email','Enter a valid email').isEmail(),
   body('password','Password Cannot be blank').exists()
-],cache('5 minutes'), async (req,res) => {
+], cache('5 minutes'), async (req,res) => {
 
   // If there are errors, return bad request and the errors
   const errors = validationResult(req);
