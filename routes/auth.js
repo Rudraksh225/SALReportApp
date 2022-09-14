@@ -5,7 +5,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
 
-import apicache from 'apicache'
+const apicache = require('apicache')
 let cache = apicache.middleware
 
 try{
