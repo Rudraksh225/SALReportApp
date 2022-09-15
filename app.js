@@ -17,7 +17,7 @@ const app = express()
 // })
 
 app.use(express.json({limit: '1000mb'}))
-app.use(cors())
+app.use(cors('5 minutes'))
 
 // app.use(cache())
 
