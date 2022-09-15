@@ -3,11 +3,12 @@ const cors = require('cors')
 const connectToMongo = require('./db')
 
 const apicache = require('apicache')
-const cache = apicache.options({
-  headers: {
-    'cache-control': 'must-revalidate'
-  },
-}).middleware
+const cache = apicache.middleware
+// const cache = apicache.options({
+//   headers: {
+//     'cache-control': 'must-revalidate'
+//   },
+// }).middleware
 
 
 connectToMongo()
