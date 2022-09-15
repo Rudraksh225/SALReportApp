@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
- const mongoURI = "mongodb+srv://rudrakshjani:Sorttros.3001@cluster0.kj8mtkj.mongodb.net/ReportApp"
+ const mongoURI = process.env.MONGOURI
 
 const connectToMongo = ()=> {
     mongoose.connect(mongoURI, ()=>{
@@ -29,4 +30,4 @@ const connectToMongo = ()=> {
 //     },
 //   };
 
-module.exports = connectToMongo     
+module.exports = connectToMongo  
