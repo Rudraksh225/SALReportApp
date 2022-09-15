@@ -74,6 +74,7 @@ router.post('/login',[
   body('password','Password Cannot be blank').exists()
 ], async (req,res) => {
 
+  console.log(JSON.stringify(req.headers));
   // If there are errors, return bad request and the errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

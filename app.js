@@ -2,8 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const connectToMongo = require('./db')
 
-const apicache = require('apicache')
-const cache = apicache.middleware
+// const apicache = require('apicache')
+// const cache = apicache.middleware
+
 // const cache = apicache.options({
 //   headers: {
 //     'cache-control': 'must-revalidate'
@@ -17,7 +18,7 @@ const app = express()
 app.use(express.json({limit: '1000mb'}))
 app.use(cors())
 
-app.use(cache('5 minutes')) 
+// app.use(cache('5 minutes')) 
 
 /*Make a upload folder available publically for fetching images
   1. 1st part will be ignore '/upload' so you can access form browser with upload router also
