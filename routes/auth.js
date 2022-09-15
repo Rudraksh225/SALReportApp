@@ -5,9 +5,6 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
 
-const apicache = require('apicache')
-let cache = apicache.middleware
-
 try{
 const Admin = require('../models/Admin')
 }catch(err){  
@@ -75,7 +72,7 @@ router.post('/createuser',[
 router.post('/login',[ 
   body('email','Enter a valid email').isEmail(),
   body('password','Password Cannot be blank').exists()
-], cache('5 minutes'), async (req,res) => {
+], async (req,res) => {
 
   // If there are errors, return bad request and the errors
   const errors = validationResult(req);
