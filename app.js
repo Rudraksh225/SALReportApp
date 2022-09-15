@@ -5,7 +5,7 @@ const connectToMongo = require('./db')
 const apicache = require('apicache')
 const cache = apicache.options({
   headers: {
-    'cache-control': 'no-cache',
+    'cache-control': 'must-revalidate'
   },
 }).middleware
 
