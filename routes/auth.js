@@ -105,16 +105,16 @@ router.post('/login/',[
       
       // res.json({id, message: "Login Succesfully"})
 
-      // res.json({email: req.body.email, password: password})
+      res.json({email: req.body.email, password: password})
 
-      const data ={
-        user:{
-          id: user.id
-        }
-      }
-      const authtoken = jwt.sign(data, JWT_SECRET)
+      // const data ={
+      //   user:{
+      //     id: user.id
+      //   }
+      // }
+      // const authtoken = jwt.sign(data, JWT_SECRET)
 
-      res.json({authtoken}) 
+      // res.json({authtoken}) 
 
     }catch(err){
       console.error(err.message)
