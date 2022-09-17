@@ -100,7 +100,7 @@ router.post('/login/',[
       
       const id = user._id
       
-      res.json({email: id, password: "Login Succesfully"})
+      res.json({id, message: "Login Succesfully"})
 
       // const data ={
       //   user:{
