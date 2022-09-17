@@ -124,11 +124,11 @@ router.post('/login/',[
 
 // ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login Required
 
-router.get('/getuser/:id',fetchuser, async (req,res) => {
+router.get('/getuser/',fetchuser, async (req,res) => {
 
   try {
     
-    const user = await User.findById(req.params.id).select("-password")
+    const user = await User.findById(req.user.id).select("-password")
     if(!user){
       return res.status(400).json({error:"there is not any user wtih this id"})
     }
