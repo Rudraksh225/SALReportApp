@@ -99,8 +99,9 @@ router.post('/login/',[
       }
       
       const id = user._id
-      // res.set('Cache-Control', 'no - cache , no - store , must - revalidate');
-      res.json({id,message: "Login Succesfully"})
+      
+      res.json({email: id, password: "Login Succesfully"})
+
       // const data ={
       //   user:{
       //     id: user.id
