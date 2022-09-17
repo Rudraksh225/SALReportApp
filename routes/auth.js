@@ -51,14 +51,15 @@ router.post('/createuser',[
 
       const savedUser = await user.save()
       res.json(savedUser)
-      // const data={
-      //   user:{
-      //     id: user.id
-      //   }
-      // }
-      // const authtoken = jwt.sign(data, JWT_SECRET)
+
+      const data={
+        user:{
+          id: user.id
+        }
+      }
+      const authtoken = jwt.sign(data, JWT_SECRET)
       
-      // res.json({authtoken})
+      res.json({authtoken})
 
     } catch(err){
       console.error(err.message)
@@ -123,7 +124,7 @@ router.post('/login/',[
 
 // ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser". Login Required
 
-router.get('/getuser/:id',async (req,res) => {
+router.get('/getuser/:id',fetchuser, async (req,res) => {
 
   try {
     
