@@ -87,7 +87,9 @@ router.post('/login/',[
     try{
 
       let user = await User.findOne({email:req.body.email});
+
       console.log(user)
+
       if(!user){
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
@@ -102,16 +104,16 @@ router.post('/login/',[
       
       // res.json({id, message: "Login Succesfully"})
 
-      res.json({email: req.body.email, password: password})
+      // res.json({email: req.body.email, password: password})
 
-      // const data ={
-      //   user:{
-      //     id: user.id
-      //   }
-      // }
-      // const authtoken = jwt.sign(data, JWT_SECRET)
+      const data ={
+        user:{
+          id: user.id
+        }
+      }
+      const authtoken = jwt.sign(data, JWT_SECRET)
 
-      // res.json({authtoken}) 
+      res.json({authtoken}) 
 
     }catch(err){
       console.error(err.message)
