@@ -127,7 +127,7 @@ router.post("/addpost", async (req, res) => {
    try {
 
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
-      const { image, user, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
+      const { image, user, area, description, locality, latitude, phoneno, name } = req.body;
       
       console.log(image, area, description, locality, latitude, phoneno, name)
       
