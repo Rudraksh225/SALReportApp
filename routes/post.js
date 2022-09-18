@@ -144,10 +144,16 @@ router.post("/addpost", async (req, res) => {
       }
 
 
-      
+      try{
       const newpost = new Post({
          phoneno, name, latitude, longtitude, area, description, locality, user, image 
       });
+      }catch(err){
+         res.msg(err)
+         console.log(aaaaaaaaaaaaaaaaaaaaa)
+         console.log(err)
+         console.log(aaaaaaaaaaaaaaaaaaaaa)
+      }
 
       const savedPost = await newpost.save();
 
