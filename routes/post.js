@@ -53,8 +53,6 @@ const { body, validationResult } = require("express-validator");
 router.get("/fetchpost", fetchuser, async (req, res) => {
 
    try{
-      const fs = require("fs");
-
       const posts = await Post.find({ user: req.params.id });
       res.json(posts)
 
@@ -72,8 +70,8 @@ router.get("/fetchpost", fetchuser, async (req, res) => {
 router.get("/fetchallpost",
    async (req, res) => {
       try {
-         // const posts = await Post
-         res.json(Post);
+         const posts = await Post.find({})
+         res.json(posts);
       } catch (err) {
          console.error(err.message);
          res.status(500).send("Ineternal Server Error");
