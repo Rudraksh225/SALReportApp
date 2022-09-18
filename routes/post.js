@@ -69,14 +69,11 @@ router.get("/fetchpost", fetchuser, async (req, res) => {
 
 router.get("/fetchallpost",
    async (req, res) => {
-      try {
+      
          const posts = await Post.find({}).limit(5)
          res.json(posts);
-      } catch (err) {
-         console.error(err.message);
-         res.status(500).send("Ineternal Server Error");
-      }
-   });
+      } 
+   );
 
 
 //ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
