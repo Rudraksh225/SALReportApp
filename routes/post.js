@@ -129,7 +129,7 @@ router.post("/addpost", async (req, res) => {
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       const { image, user, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       
-      // console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
+      console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
       
 
       // If there are errors, return bad request and the errors
