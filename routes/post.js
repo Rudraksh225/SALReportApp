@@ -149,8 +149,7 @@ router.post("/addpost", async (req, res) => {
          phoneno, name, latitude, longtitude, area, description, locality, user, image 
       });
       }catch(err){
-         
-         res.msg(err)
+
          console.log(aaaaaaaaaaaaaaaaaaaaa)
          console.log(err)
          console.log(aaaaaaaaaaaaaaaaaaaaa)
