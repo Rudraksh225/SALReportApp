@@ -129,8 +129,8 @@ router.post("/addpost", async (req, res) => {
       try{
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       const { image, user, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
-      //git 
-      console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
+      
+      // console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
       }catch(err){
          console.log(aaaaaaaaaaaaaaaaaaaaa)
          console.log(err)
