@@ -132,6 +132,7 @@ router.post("/addpost", async (req, res) => {
       
       // console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
       }catch(err){
+         res.send(err)
          console.log("aaaaaaaaaaaaaaaaaaaaa")
          console.log(err)
          console.log("aaaaaaaaaaaaaaaaaaaaa")
@@ -146,10 +147,10 @@ router.post("/addpost", async (req, res) => {
 
       try{
       const newpost = new Post({
-         phoneno, name, latitude, longtitude, area, description, locality, user, image 
+         image, user, area, description, locality, longtitude, latitude, phoneno, name 
       });
       }catch(err){
-
+         res.send(err)
          console.log("aaaaaaaaaaaaaaaaaaaaa")
          console.log(err)
          console.log("aaaaaaaaaaaaaaaaaaaaa")
@@ -161,6 +162,7 @@ router.post("/addpost", async (req, res) => {
       res.json(savedPost);
    } catch (err) {
       console.error(err.message);
+      res.send(err)
       res.status(500).send("Internal Server Error ");
    }
 });
