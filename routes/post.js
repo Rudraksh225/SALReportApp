@@ -50,7 +50,7 @@ const { body, validationResult } = require("express-validator");
 
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
-router.get("/fetchpost/:id", async (req, res) => {
+router.get("/fetchpost",fetchuser, async (req, res) => {
 
 
 
