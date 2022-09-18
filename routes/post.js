@@ -50,54 +50,15 @@ const { body, validationResult } = require("express-validator");
 
 // ROUTE 1: get all the notes: GET "/api/post/fetchallpost". No login required
 
-router.get("/fetchpost",fetchuser, async (req, res) => {
+router.get("/fetchpost", fetchuser, async (req, res) => {
 
-
-
-   try {
-
+   try{
       const fs = require("fs");
 
       const posts = await Post.find({ user: req.params.id });
-      // res.json(posts)
+      res.json(posts)
 
-      try{
-      // Taken refrence from https://stackoverflow.com/questions/36856232/write-add-data-in-json-file-using-node-js
-      // Make a json object
-      var obj = {
-         table: []
-      };
-
-      //Add some data in json object
-      obj.table.push(posts);
-
-      //Convert it from an object to a string with JSON.stringify
-      var json = JSON.stringify(obj);
-
-      var callback = function (response) {
-         console.log('response statusCode');
-       };
-
-      //Use fs to write the file to disk
-      fs.writeFile('posts.json', json, 'utf8', callback);
-
-      //console.log(posts.json)
-      //res.sendFile(posts)
-
-      res.sendFile(posts.json, options, function (err) {
-         if (err) {
-             next(err);
-         } else {
-             console.log('Sent:', fileName);
-         }
-     });
-
-      }
-      catch(err){
-         console.log(err)
-         res.send(err)
-      }
-   } catch (err) {
+   }catch (err) {
       console.log(err);
       res.status(500).send("Ineternal Server Error");
    }
@@ -122,7 +83,7 @@ router.get("/fetchallpost",
 
 //ROUTE 2: add a new post using: POST "/api/post/addnote". Login required
 
-router.post("/addpost", async (req, res) => {
+router.post("/addpost",fetchuser ,async (req, res) => {
 
    try {
 
@@ -141,7 +102,7 @@ router.post("/addpost", async (req, res) => {
 
      
       const newpost = new Post({
-         image, user, area, description, locality, longtitude:req.body.longtitude, latitude, phoneno, name 
+         image, user: req.user.id, area, description, locality, longtitude:req.body.longtitude, latitude, phoneno, name 
       });
 
       const savedPost = await newpost.save();

@@ -70,12 +70,10 @@ router.post('/createuser',[
 
 // ROUTE 2: Authenticate a User using : POST "/api/auth/login". No Login Required
 
-router.post('/login/',[ 
+router.post('/login',[ 
   body('email','Enter a valid email').isEmail(),
   body('password','Password Cannot be blank').exists()
 ], async (req,res) => {
-
-  console.log(JSON.stringify(req.headers));
 
   // If there are errors, return bad request and the errors
   const errors = validationResult(req);
@@ -88,9 +86,6 @@ router.post('/login/',[
     try{
 
       let user = await User.findOne({email:req.body.email});
-
-      console.log(user)
-
       if(!user){
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
@@ -102,10 +97,6 @@ router.post('/login/',[
       }
       
       const id = user._id
-      
-      // res.json({id, message: "Login Succesfully"})
-
-      // res.json({email: req.body.email, password: password})
 
       const data ={
         user:{
