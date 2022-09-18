@@ -70,7 +70,7 @@ router.get("/fetchpost", fetchuser, async (req, res) => {
 router.get("/fetchallpost",
    async (req, res) => {
       
-         const posts = await Post.find({}).limit(5)
+         const posts = await Post.find().limit(5)
          res.json(posts);
       } 
    );
