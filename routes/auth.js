@@ -21,6 +21,7 @@ router.post('/createuser',[
     body('password','password must be atleast 5 character').isLength({ min: 5 })
 ],async (req,res) => {
 
+  try{
     // If there are errors, return bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -28,7 +29,7 @@ router.post('/createuser',[
     }  
     
     //check wether the user with this email exist already
-    try{
+    
       //find for user with this email id already exist or not
       let user = await User.findOne({email:req.body.email});
       if(user){
@@ -50,7 +51,6 @@ router.post('/createuser',[
       }) 
 
       const savedUser = await user.save()
-      res.json(savedUser)
 
       const data={
         user:{
@@ -62,12 +62,11 @@ router.post('/createuser',[
       res.json({authtoken})
 
     } catch(err){
-      console.error(err.message)
       res.status(500).send("Ineternal Server Error")
     }
 
 })
-
+  
 // ROUTE 2: Authenticate a User using : POST "/api/auth/login". No Login Required
 
 router.post('/login',[ 
