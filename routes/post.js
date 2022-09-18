@@ -129,7 +129,7 @@ router.post("/addpost", async (req, res) => {
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       const { image, user, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       
-      console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
+      console.log(image, area, description, locality, latitude, phoneno, name)
       
 
       // If there are errors, return bad request and the errors
@@ -141,7 +141,7 @@ router.post("/addpost", async (req, res) => {
 
      
       const newpost = new Post({
-         image, user, area, description, locality, longtitude, latitude, phoneno, name 
+         image, user, area, description, locality, longtitude:req.body.longtitude, latitude, phoneno, name 
       });
 
       const savedPost = await newpost.save();
