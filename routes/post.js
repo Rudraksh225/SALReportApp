@@ -126,17 +126,11 @@ router.post("/addpost", async (req, res) => {
 
    try {
 
-      try{
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       const { image, user, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       
       // console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
-      }catch(err){
-         res.send(err)
-         console.log("aaaaaaaaaaaaaaaaaaaaa")
-         console.log(err)
-         console.log("aaaaaaaaaaaaaaaaaaaaa")
-      }
+      
 
       // If there are errors, return bad request and the errors
       const errors = validationResult(req);
@@ -145,16 +139,10 @@ router.post("/addpost", async (req, res) => {
       }
 
 
-      try{
+     
       const newpost = new Post({
          image, user, area, description, locality, longtitude, latitude, phoneno, name 
       });
-      }catch(err){
-         res.send(err)
-         console.log("aaaaaaaaaaaaaaaaaaaaa")
-         console.log(err)
-         console.log("aaaaaaaaaaaaaaaaaaaaa")
-      }
 
       const savedPost = await newpost.save();
 
@@ -162,7 +150,6 @@ router.post("/addpost", async (req, res) => {
       res.json(savedPost);
    } catch (err) {
       console.error(err.message);
-      res.send(err)
       res.status(500).send("Internal Server Error ");
    }
 });
