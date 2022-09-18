@@ -132,9 +132,9 @@ router.post("/addpost", async (req, res) => {
       
       // console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
       }catch(err){
-         console.log(aaaaaaaaaaaaaaaaaaaaa)
+         console.log("aaaaaaaaaaaaaaaaaaaaa")
          console.log(err)
-         console.log(aaaaaaaaaaaaaaaaaaaaa)
+         console.log("aaaaaaaaaaaaaaaaaaaaa")
       }
 
       // If there are errors, return bad request and the errors
@@ -150,9 +150,9 @@ router.post("/addpost", async (req, res) => {
       });
       }catch(err){
 
-         console.log(aaaaaaaaaaaaaaaaaaaaa)
+         console.log("aaaaaaaaaaaaaaaaaaaaa")
          console.log(err)
-         console.log(aaaaaaaaaaaaaaaaaaaaa)
+         console.log("aaaaaaaaaaaaaaaaaaaaa")
       }
 
       const savedPost = await newpost.save();
