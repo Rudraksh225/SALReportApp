@@ -126,11 +126,16 @@ router.post("/addpost", async (req, res) => {
 
    try {
 
+      try{
       // const { image, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       const { image, user, area, description, locality, longtitude, latitude, phoneno, name } = req.body;
       //git 
       console.log(image, area, description, locality, longtitude, latitude, phoneno, name)
-
+      }catch(err){
+         console.log(aaaaaaaaaaaaaaaaaaaaa)
+         console.log(err)
+         console.log(aaaaaaaaaaaaaaaaaaaaa)
+      }
 
       // If there are errors, return bad request and the errors
       const errors = validationResult(req);
@@ -139,11 +144,10 @@ router.post("/addpost", async (req, res) => {
       }
 
 
-
+      
       const newpost = new Post({
-         phoneno, name, latitude, longtitude, area, description, locality, user, image
+         phoneno, name, latitude, longtitude, area, description, locality, user, image 
       });
-
 
       const savedPost = await newpost.save();
 
