@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+
+try{
 const Admin = require('../models/Admin');
+}catch(e){
+  console.log(e)
+}
+
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
