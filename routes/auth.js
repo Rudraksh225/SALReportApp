@@ -4,7 +4,8 @@ const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
-const Admin = require('../models/Admin')
+// const Admin = require('../models/Admin')
+import Admin from '../models/Admin'
 
 // try{
 // const Admin = require('../models/Admin')
