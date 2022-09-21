@@ -4,12 +4,13 @@ const User = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
-
-try{
 const Admin = require('../models/Admin')
-}catch(err){  
-console.log(err)
-}
+
+// try{
+// const Admin = require('../models/Admin')
+// }catch(err){  
+// console.log(err)
+// }
 
 var jwt = require('jsonwebtoken');
 
@@ -190,7 +191,7 @@ router.post('/adminlogin',[
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const {email, password} = req.body;
+  const {password} = req.body;
 
     try{
       let admin = await Admin.findOne({email:req.body.email});
