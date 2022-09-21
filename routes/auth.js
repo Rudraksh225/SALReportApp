@@ -145,9 +145,9 @@ router.post('/createadmin',[
     return res.status(400).json({ errors: errors.array() });
   }  
   
-  //check wether the user with this email exist already
+  //check wether the admin with this email exist already
   try{
-    //find for user with this email id already exist or not
+    //find for admin with this email id already exist or not
     let admin = await Admin.findOne({email:req.body.email});
     if(admin){
       return res.status(400).json({error:"Sorry, this email address alredy exist"})
