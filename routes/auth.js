@@ -157,7 +157,7 @@ router.post('/createadmin',[
     const salt = await bcrypt.genSalt(10);
     const secPass = await bcrypt.hash(req.body.password, salt)
 
-    //create a new user
+    //create a new admin
     admin = await Admin.create({
       email: req.body.email,
       password: secPass,
