@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User')
+const User = require('../models/User');
+const Admin = require('../models/Admin');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
-const Admin = require('../models/Admin')
 // import Admin from '../models/Admin'
 
 // try{
