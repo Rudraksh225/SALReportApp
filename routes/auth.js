@@ -1,17 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-
-try{
-const Admin = require('../models/Admin');
-}catch(e){
-  console.log(e)
-}
-
+const Useradmin = require('../models/Useradmin');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const fetchuser = require('../middleware/fetchuser');
-// import Admin from '../models/Admin'
+// import Useradmin from '../models/Admin'
 
 // try{
 // const Admin = require('../models/Admin')
@@ -154,7 +148,7 @@ router.post('/createadmin',[
   //check wether the admin with this email exist already
   try{
     //find for admin with this email id already exist or not
-    let admin = await Admin.findOne({email:req.body.email});
+    let admin = await Useradmin.findOne({email:req.body.email});
     if(admin){
       return res.status(400).json({error:"Sorry, this email address alredy exist"})
     }
@@ -164,7 +158,7 @@ router.post('/createadmin',[
     const secPass = await bcrypt.hash(req.body.password, salt)
 
     //create a new admin
-    admin = await Admin.create({
+    admin = await Useradmin.create({
       email: req.body.email,
       password: secPass,
     })
@@ -201,7 +195,7 @@ router.post('/adminlogin',[
   const {password} = req.body;
 
     try{
-      let admin = await Admin.findOne({email:req.body.email});
+      let admin = await Useradmin.findOne({email:req.body.email});
       if(!admin){
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
