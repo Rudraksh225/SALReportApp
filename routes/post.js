@@ -41,15 +41,12 @@ router.post("/addpost",fetchuser ,async (req, res) => {
       
       console.log(image, area, description, locality, latitude, phoneno, name)
       
-
       // If there are errors, return bad request and the errors
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
          return res.status(400).json({ errors: errors.array() });
       }
 
-
-     
       const newpost = new Post({
          image, user: req.user.id, area, description, locality, longtitude:req.body.longtitude, latitude, phoneno, name 
       });
