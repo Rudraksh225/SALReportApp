@@ -54,14 +54,7 @@ router.post('/createuser',[
 
       const savedUser = await user.save()
 
-      const data={
-        user:{
-          id: user.id
-        }
-      }
-      const authtoken = jwt.sign(data, JWT_SECRET)
-      
-      res.json({authtoken})
+      res.json({msg: "user created succesfully"})
 
     } catch(err){
       res.status(500).send("Ineternal Server Error")
@@ -96,18 +89,8 @@ router.post('/login',[
       if(!passwordcompare){
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
-      
-      const id = user._id
 
-      const data ={
-        user:{
-          id: user.id
-        }
-      }
-      const authtoken = jwt.sign(data, JWT_SECRET)
-
-      res.json({authtoken}) 
-
+      res.json({msg: "Login Succesfully"})
     }catch(err){
       console.error(err.message)
       res.status(500).send("Internal Server Error")
@@ -162,15 +145,8 @@ router.post('/createadmin',[
       email: req.body.email,
       password: secPass,
     })
-    
-    const data={
-      admin:{
-        id: admin.id
-      }
-    }
-    const authtoken = jwt.sign(data, JWT_SECRET)
-    
-    res.json({authtoken})
+  
+    res.json("msg: Admin created succesfull")
 
   } catch(err){
     console.error(err.message)
@@ -205,14 +181,7 @@ router.post('/adminlogin',[
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
 
-      const data ={
-        admin:{
-          id: admin.id
-        }
-      }
-      const authtoken = jwt.sign(data, JWT_SECRET)
-
-      res.json({authtoken}) 
+      res.json("msg: Admin Login Succesfully")
 
     }catch(err){
       console.error(err.message)
