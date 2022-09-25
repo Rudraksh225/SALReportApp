@@ -146,7 +146,7 @@ router.post('/createadmin',[
       password: secPass,
     })
   
-    res.json("msg: Admin created succesfull")
+    res.json({msg: "Admin created succesfully"})
 
   } catch(err){
     console.error(err.message)
@@ -181,7 +181,7 @@ router.post('/adminlogin',[
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
 
-      res.json("msg: Admin Login Succesfully")
+      res.json({msg: "Admin created succesfully"})
 
     }catch(err){
       console.error(err.message)
