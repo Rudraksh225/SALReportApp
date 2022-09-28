@@ -62,3 +62,20 @@ router.post("/addpost", async (req, res) => {
 });
 
 module.exports = router;
+
+//ROUTE 3: delete a post using: DELETE "/api/post/deletepost"
+
+router.delete("/deletepost/:id", async (req, res) => {
+   try{
+      //find the note and delete it
+      let note = await Post.findById(req.params.id)
+   
+      if(!note) { return res.status(404).send("Post not Found")}
+   
+      note = await Post.findByIdAndDelete(req.params.id)
+      res.json({msg: "Post deleted succesfully"})
+   } catch(e){
+      console.error(err.message);
+      res.status(500).send("Internal Server Error ");
+   }
+})
