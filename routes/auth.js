@@ -181,7 +181,7 @@ router.post('/adminlogin',[
         return res.status(400).json({error:"Please try to login with correct credentials"})
       }
 
-      res.json({msg: "Admin created succesfully"})
+      res.json({msg: "Admin login succesfully"})
 
     }catch(err){
       console.error(err.message)
