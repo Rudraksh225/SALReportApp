@@ -174,15 +174,17 @@ router.post('/adminlogin',cors(),[
     try{
       let admin = await Useradmin.findOne({email:req.body.email});
       if(!admin){
-        return res.status(400).json({error:"Please try to login with correct credentials"})
+        let success = false
+        return res.status(400).json({success, error:"Please try to login with correct credentials"})
       }
 
       const passwordcompare = await bcrypt.compare(password, admin.password)
       if(!passwordcompare){
-        return res.status(400).json({error:"Please try to login with correct credentials"})
+        let success = false
+        return res.status(400).json({success, error:"Please try to login with correct credentials"})
       }
-
-      res.json({msg: "Admin login succesfully"})
+      let success = true
+      res.json({success, msg: "Admin login succesfully"})
 
     }catch(err){
       console.error(err.message)
