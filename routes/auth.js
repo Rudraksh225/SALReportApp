@@ -157,7 +157,7 @@ router.post('/createadmin',[
 
 //Route 5: Authenticate a admin using "/api/auth/adminlogin" no login required
 
-router.post('/adminlogin',[ 
+router.post('/adminlogin',cors(),[ 
   body('email','Enter a valid email').isEmail(),
   body('password','Password Cannot be blank').exists()
 ],async (req,res) => {
