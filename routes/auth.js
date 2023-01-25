@@ -184,7 +184,7 @@ router.post('/adminlogin',cors(),[
         return res.status(400).json({success, error:"Please try to login with correct credentials"})
       }
       let success = true
-      res.json({success, msg: "Admin login succesfully"})
+      res.status(200).json({success, id:admin._id , msg: "Admin login succesfully"}) 
 
     }catch(err){
       console.error(err.message)
