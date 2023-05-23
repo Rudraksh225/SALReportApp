@@ -14,9 +14,9 @@ const fetchuser = require('../middleware/fetchuser');
 // console.log(err)
 // }
 
-var jwt = require('jsonwebtoken');
+// var jwt = require('jsonwebtoken');
 
-const JWT_SECRET = "SALReportApp0359"
+// const JWT_SECRET = "SALReportApp0359"
 
 // ROUTE 1: reate a user using: POST"/api/auth/createuser". No login required
 router.post('/createuser',[
@@ -55,7 +55,7 @@ router.post('/createuser',[
 
       const savedUser = await user.save()
 
-      res.json({msg: "user created succesfully"})
+      res.json({msg: "user created succesfully", savedUser})
 
     } catch(err){
       res.status(500).send("Ineternal Server Error")
